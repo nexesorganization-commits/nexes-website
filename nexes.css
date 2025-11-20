@@ -1002,18 +1002,21 @@ body::after {
 	max-width: 600px;
 	margin: 0 auto;
 }
+
 .skills-hexagon-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* exactly 4 per row */
-    gap: 50px;
-    justify-content: center;
-    margin-top: 60px;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	/* exactly 4 per row */
+	gap: 50px;
+	justify-content: center;
+	margin-top: 60px;
 	padding-left: 25px;
 	padding-right: 25px;
 }
+
 .skill-hexagon {
-    width: 230px;
-    height: 230px;
+	width: 230px;
+	height: 230px;
 }
 
 .skill-hexagon:hover {
@@ -1021,32 +1024,33 @@ body::after {
 }
 
 .hexagon-inner {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    /* remove transform: rotate(30deg); */
-    overflow: hidden;
-    border-radius: 20px;
-    background: linear-gradient(135deg, var(--carbon-medium), var(--carbon-light));
-    border: 2px solid var(--metal-dark);
+	width: 100%;
+	height: 100%;
+	position: relative;
+	/* remove transform: rotate(30deg); */
+	overflow: hidden;
+	border-radius: 20px;
+	background: linear-gradient(135deg, var(--carbon-medium), var(--carbon-light));
+	border: 2px solid var(--metal-dark);
 }
+
 .skill-hexagon:hover .hexagon-inner {
 	border-color: var(--accent-purple);
 	box-shadow: 0 0 30px rgba(153, 69, 255, 0.5);
 }
 
 .hexagon-content {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    /* remove transform: rotate(-30deg); */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	/* remove transform: rotate(-30deg); */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
 }
 
 .skill-icon-hex {
@@ -1055,12 +1059,18 @@ body::after {
 	color: var(--accent-purple);
 	animation: float 3s ease-in-out infinite;
 }
+
 .skill-image {
-  width: 100%;          /* stretch across the box */
-  height: 100%;         /* stretch top to bottom */
-  object-fit: cover;    /* crop/scale so it fills neatly */
-  border-radius: 20px;  /* keep your rounded corners */
-  display: block;       /* remove any inline spacing */
+	width: 100%;
+	/* stretch across the box */
+	height: 100%;
+	/* stretch top to bottom */
+	object-fit: cover;
+	/* crop/scale so it fills neatly */
+	border-radius: 20px;
+	/* keep your rounded corners */
+	display: block;
+	/* remove any inline spacing */
 }
 
 
@@ -1110,13 +1120,16 @@ body::after {
 		width: 0;
 	}
 }
+
 .skill-name-hex,
 .skill-percentage-hex {
-  font-size: 14px;
-  text-align: center;
-  margin: 2px 0;
-  white-space: normal;   /* 👈 allow wrapping */
-  overflow: visible;     /* 👈 don’t hide text */
+	font-size: 14px;
+	text-align: center;
+	margin: 2px 0;
+	white-space: normal;
+	/* 👈 allow wrapping */
+	overflow: visible;
+	/* 👈 don’t hide text */
 }
 
 
@@ -1161,123 +1174,142 @@ body::after {
 	color: var(--text-primary);
 	box-shadow: 0 5px 20px rgba(153, 69, 255, 0.3);
 }
+
 /* Overlay base state */
 .overlay {
-  display: flex;               /* keep flexbox always */
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  top: 0; 
-  left: 0;
-  width: 100%; 
-  height: 100%;
-  background: rgba(0,0,0,0.5);
-  z-index: 1000;
+	display: flex;
+	/* keep flexbox always */
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	z-index: 1000;
 
-  visibility: hidden;          /* hide but keep layout */
-  opacity: 0;                  /* transparent */
-  transition: opacity 0.4s ease, visibility 0s linear 0.4s;
+	visibility: hidden;
+	/* hide but keep layout */
+	opacity: 0;
+	/* transparent */
+	transition: opacity 0.4s ease, visibility 0s linear 0.4s;
 }
 
 /* When overlay is active */
 .overlay.show {
-  visibility: visible;
-  opacity: 1;
-  transition: opacity 0.4s ease;
+	visibility: visible;
+	opacity: 1;
+	transition: opacity 0.4s ease;
 }
 
 /* Overlay content animation */
 .overlay-content {
-  background: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  width: 60%;
-  max-width: 500px;
-  text-align: center;
-  box-shadow: 0 0 20px rgba(0,0,0,0.3);
-  position: relative;
-  z-index: 1001;
-  color: black;
-  transform: scale(0.2);   /* start tiny */
-  opacity: 0;
-  transition: transform 0.5s ease, opacity 0.5s ease;
+	background: #fff;
+	padding: 20px;
+	border-radius: 10px;
+	width: 60%;
+	max-width: 500px;
+	text-align: center;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+	position: relative;
+	z-index: 1001;
+	color: black;
+	transform: scale(0.2);
+	/* start tiny */
+	opacity: 0;
+	transition: transform 0.5s ease, opacity 0.5s ease;
 }
+
 #overlay-text {
-  white-space: pre-wrap;   /* preserves line breaks and spacing */
-  overflow-y: auto;        /* adds vertical scrollbar if content is too long */
-  max-height: 60vh;        /* limits height to 60% of viewport */
-  padding: 1rem;           /* optional: adds breathing room */
-  text-align: left;
+	white-space: pre-wrap;
+	/* preserves line breaks and spacing */
+	overflow-y: auto;
+	/* adds vertical scrollbar if content is too long */
+	max-height: 60vh;
+	/* limits height to 60% of viewport */
+	padding: 1rem;
+	/* optional: adds breathing room */
+	text-align: left;
 }
 
 
 .overlay.show .overlay-content {
-  transform: scale(1);     /* zoom to full size */
-  opacity: 1;
+	transform: scale(1);
+	/* zoom to full size */
+	opacity: 1;
 }
 
 
 
 .close-btn {
-  position: absolute;
-  color: red;
-  top: 15px;
-  right: 20px;
-  font-size: 24px;
-  cursor: pointer;
+	position: absolute;
+	color: red;
+	top: 15px;
+	right: 20px;
+	font-size: 24px;
+	cursor: pointer;
 }
 
 /* Blur only the skills section when overlay is active */
 .blur {
-  filter: blur(5px);   /* blur only the skills section */
+	filter: blur(5px);
+	/* blur only the skills section */
 }
 
 /* later we can add scroll lock separately */
 body.noscroll {
-  overflow: hidden;    /* prevent scrolling when overlay is open */
+	overflow: hidden;
+	/* prevent scrolling when overlay is open */
 }
 
 /* Limit overlay images so they never push the close button off screen */
 .overlay-icon {
-  max-width: 100%;
-  max-height: 70vh;   /* ✅ image height limited to 70% of viewport */
-  height: auto;
-  margin-bottom: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
-  object-fit: contain; /* ensures the image scales nicely */
+	max-width: 100%;
+	max-height: 70vh;
+	/* ✅ image height limited to 70% of viewport */
+	height: auto;
+	margin-bottom: 20px;
+	border-radius: 8px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+	object-fit: contain;
+	/* ensures the image scales nicely */
 }
 
 
 .download-btn {
-  display: block;
-  width: 100%;              /* long bar */
-  padding: 12px;
-  margin-top: 15px;
-  background-color: #28a745; /* green */
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+	display: block;
+	width: 100%;
+	/* long bar */
+	padding: 12px;
+	margin-top: 15px;
+	background-color: #28a745;
+	/* green */
+	color: white;
+	font-size: 16px;
+	font-weight: bold;
+	border: none;
+	border-radius: 6px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
 }
 
 .download-btn:hover {
-  background-color: #218838; /* darker green on hover */
+	background-color: #218838;
+	/* darker green on hover */
 }
+
 .overlay-gallery {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 15px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	margin-top: 15px;
 }
 
 .overlay-gallery img {
-  max-width: 45%;
-  border-radius: 6px;
-  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+	max-width: 45%;
+	border-radius: 6px;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
 
@@ -1480,7 +1512,7 @@ a.info-item {
 	background: var(--primary-black);
 	border-top: 1px solid var(--metal-dark);
 	position: relative;
-	
+
 }
 
 .footer-content {
@@ -1536,6 +1568,7 @@ a.info-item {
 	transform: translateY(-3px);
 	box-shadow: 0 5px 15px rgba(153, 69, 255, 0.3);
 }
+
 .footer-section h4 {
 	color: var(--text-primary);
 	margin-bottom: 20px;
@@ -1649,7 +1682,6 @@ a.info-item {
 	.nav-menu li {
 		margin: 15px 0;
 	}
-
 	.nav-menu a {
 		display: block;
 		padding: 15px 30px;
@@ -1761,5 +1793,60 @@ a.info-item {
 		flex-direction: column;
 		gap: 20px;
 		text-align: center;
+	}
+}
+
+/* --------------------
+   MOBILE RESPONSIVENESS FIX
+   --------------------*/
+@media (max-width: 760px) {
+
+	body {
+		padding: 10px;
+	}
+
+	header,
+	section,
+	footer {
+		padding: 15px;
+	}
+
+	img {
+		max-width: 100%;
+		height: auto;
+	}
+
+	.footer {
+		text-align: center;
+		display: block;
+	}
+
+	.footer-section,
+	.footer-links {
+		align-items: center;
+
+	}
+
+	.footer .social-icons {
+		display: flex;
+		justify-content: center;
+		gap: 15px;
+		margin-top: 15px;
+	}
+
+	.footer .social-icons img {
+		width: 30px;
+		height: 30px;
+	}
+
+	/* Fix grids becoming squeezed */
+	.grid,
+	.row {
+		display: block;
+	}
+
+	.col {
+		width: 100%;
+		margin-bottom: 20px;
 	}
 }
