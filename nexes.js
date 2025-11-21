@@ -233,36 +233,42 @@ const skillsData = [
     title:'A poem',
     icon: 'images/arare spirit.jpg',
     type: 'text',
-    description: `It was such a calm evening. 
-    When I was walking. 
-    Down the street 
-    And caught a glimpse 
-    Of- I think- a lost angel 
+    description: `In the middle of terrible darkness
+I stood full of hardness
+Trying to imagine
+but all that came was to destroy
+closing my eyes
+I appeared under huge trees
 
-    Without hesitation 
-    I followed her 
-    I wanted to pull her hand 
-    For my heart screamed a cry
-    But I was too shy to try 
+In the jungle full of chaos
+the sky stormed louder
+and the dust was in panic as in a stamped
+I cried out to God
+Let me talk to thee
+and make these oak tree
+fall on me
 
-    When she turned around 
-    And her eyes met mine 
-    I saw stars in them
-    I saw that they carried words 
-    The mouth dared not to speak 
+My voice was louder than the storm
+as if I was the queen 
+that was my fear
+the queen of tears
+suddenly, I felt light in me
+I felt my tears dry
+and I smiled
 
-    Her eyes dared to amaze 
-    When she shared a gaze 
-    But turned away 
-    And left me frozen 
-    And trembling 
+I heard the trees whisper
+all they were doing was prosper
+the sudden feeling made the chaos
+disappear in cries
 
-    Just like a hurricane 
-    She ruined me 
-    She left me
-    Wondering if I could ever
-    See another 
-    Beautiful day like in life`,
+Then I smiled and thought 
+for arts sake
+they only say it's fake
+but I feel released
+at the same time relieved
+
+It's rare
+but always there.`,
     level: 'Moira Kenza',
     category: 'NB'
   },
@@ -618,3 +624,4 @@ window.addEventListener('scroll', () => {
     }
 
 });
+
