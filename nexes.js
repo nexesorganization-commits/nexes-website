@@ -229,7 +229,7 @@ function goToSlide(index) {
 // Define your skills data
 const skillsData = [
   {
-    name: 'A rare spirit',
+    name: 'A beautiful misfortune',
     title:'A poem',
     icon: 'images/arare spirit.jpg',
     type: 'text',
@@ -616,4 +616,5 @@ window.addEventListener('scroll', () => {
     if (parallax) {
         parallax.style.transform = `translateY(${scrolled * 0.5}px)`;
     }
+
 });
