@@ -1,9 +1,17 @@
 @charset "utf-8";
+/* CSS Document */
+
+/*
+TemplateMo 600 Prism Flux
+
+https://templatemo.com/tm-600-prism-flux
+
+*/
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-    max-width: 100%;
+  max-width: 100%;
 }
 
 :root {
@@ -1782,7 +1790,7 @@ a.info-item {
 
   /* Skills */
   .skills-hexagon-grid { grid-template-columns: repeat(4, 1fr); gap: 30px; justify-content: center; }
-  .skill-hexagon { max-width: 180px; aspect-ratio: 1 / 1; margin: 0 auto; } /* ✅ fits iPad Mini */
+  .skill-hexagon { max-width: 180px; aspect-ratio: 1 / 1; margin: 0 auto; }
 
   /* Contact */
   .contact-container { grid-template-columns: 1fr; }
@@ -1794,7 +1802,7 @@ a.info-item {
 /* iPad Air/Pro (769px–1024px) */
 @media (min-width: 769px) and (max-width: 1024px) {
   .skills-hexagon-grid { grid-template-columns: repeat(4, 1fr); gap: 30px; justify-content: center; }
-  .skill-hexagon { max-width: 160px; aspect-ratio: 1 / 1; margin: 0 auto; } /* ✅ smaller so they don’t squeeze */
+  .skill-hexagon { max-width: 160px; aspect-ratio: 1 / 1; margin: 0 auto; }
 }
 
 @media (max-width: 480px) {
@@ -1812,7 +1820,7 @@ a.info-item {
 
   /* Skills */
   .skills-hexagon-grid {
-    grid-template-columns: repeat(2, 1fr);  /* ✅ two per row on phones */
+    grid-template-columns: repeat(2, 1fr);
     gap: 25px;
     justify-content: center;
     padding-left: 10px;
@@ -1828,13 +1836,23 @@ a.info-item {
   .skill-categories {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;   /* ✅ center tabs */
+    justify-content: center;
     gap: 10px;
   }
   .category-tab {
-    flex: 1 1 45%;             /* ✅ two tabs per row */
+    flex: 1 1 45%;
     text-align: center;
     max-width: 45%;
+  }
+
+  /* Overlay / Modal adjustments for phones */
+  .overlay,
+  .modal {
+    width: 95%;          /* wider on phones */
+    max-width: 95%;
+    max-height: 90%;     /* prevent vertical overflow */
+    margin: 0 auto;      /* centered */
+    overflow-y: auto;    /* scroll inside if content is long */
   }
 
   /* Contact */
