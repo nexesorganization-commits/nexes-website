@@ -6,6 +6,8 @@
     <title>NEXES ORGANIZATION</title>
     <link rel="shortcut icon" href="images/Capture.JPG" type="image/x-icon" style="border-radius: 50%;">
     <link rel="stylesheet" href="nexes.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 </head>
 <body>
 <!-- Loading Screen -->
@@ -26,7 +28,10 @@
 
 
     <!-- Navigation Header -->
-    <header class="header" id="header">
+    <header class="head" id="header">
+       <div class="dt">
+       
+       </div>
         <nav class="nav-container">
             <a href="#home" class="logo">
                 <img src="images/Capture-removebg-preview.png" alt="NEXES Logo"
@@ -42,6 +47,7 @@
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#skills" class="nav-link">Archive</a></li>
                 <li><a href="#stats" class="nav-link">Patners</a></li>
+                  <li><a href="#calendars" class="nav-link">Calendar</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
 
@@ -227,7 +233,28 @@
             </div>
         </div>
     </section>
+  <!-- The Calendar Section  -->
+   <section class="calendar-cal" id="calendars">
+         <div class="header-bar">
+  <div class="status-line" id="statusLine"></div>
+  <div style="display:flex;align-items:center;gap:25px">
+    <button class="nav-btn" onclick="prevChapter()">◀</button>
+    <div class="view-title" id="viewTitle"></div>
+    <button class="nav-btn" onclick="nextChapter()">▶</button>
+  </div>
+</div>
 
+      <div class="status-line" id="viewTitle"></div>
+    </div>
+    
+</div>
+
+<div id="chapterWrapper" class="chapter-wrapper">
+  <div id="calendar"></div>
+</div>
+
+    </section>
+  
     <!-- Contact Section -->
     <section class="contact-section" id="contact">
         <div class="section-header">
@@ -316,8 +343,7 @@
                     Turning creative ideas into a proffessional way of living.
                 </p>
                 <div class="footer-social">
-                     <a href="mailto:nezkev07@gmail.com" target="_blank"><img src="Images/gmail.png" alt="gmail"
-                            class="socail-icon"></a>
+                    <a href="mailto:nezkev07@gmail.com" target="_blank"><i class="fa-duotone fa-solid fa-envelope" style="--fa-primary-color: rgba(15, 50, 114, 1.00); --fa-secondary-color: rgba(15, 50, 114, 0.4);"></i></a>
                     <a href="https://www.instagram.com/nexesorg?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
                         target="_blank"><img src="Images/instagram.png" alt="instagram" class="socail-icon"></a>
                     <a href="https://wa.me/250791006186" target="_blank"><img src="Images/whatsapp.png" alt="whatsapp"
@@ -362,6 +388,176 @@
         </div>
     </footer>
     <script src="nexes.js"></script>
+   <script>
+const DAYS_PER_QUARTER = 32;
+const QUARTERS_PER_CHAPTER = 4;
+const CHAPTERS_PER_SEASON = 4;
+
+// Reference date mapping
+// 09 Feb 2026 = S02 Chap1 Q2 Day 04
+const referenceDate = new Date("2026-02-09");
+
+const refSeason = 2;
+const refChapter = 1;
+const refQuarter = 2;
+const refDay = 4;
+
+const wrapper = document.getElementById("chapterWrapper");
+
+// which chapter user is viewing (0 = current chapter)
+let chapterOffset = 0;
+
+function toRoman(num){
+ const map=[["X",10],["IX",9],["V",5],["IV",4],["I",1]];
+ let result="";
+ for(let [r,v] of map){while(num>=v){result+=r;num-=v}}
+ return result;
+}
+
+function getDayDifference(today){
+ return Math.floor((today - referenceDate) / (1000*60*60*24));
+}
+
+function calculateCurrentPosition(){
+
+ const today = new Date();
+ const diff = getDayDifference(today);
+
+ let totalDays = 
+ ((refSeason-1)*CHAPTERS_PER_SEASON*QUARTERS_PER_CHAPTER*DAYS_PER_QUARTER)
+ + ((refChapter-1)*QUARTERS_PER_CHAPTER*DAYS_PER_QUARTER)
+ + ((refQuarter-1)*DAYS_PER_QUARTER)
+ + (refDay-1)
+ + diff;
+
+ if(totalDays < 0) totalDays = 0;
+
+ const daysPerSeason = CHAPTERS_PER_SEASON * QUARTERS_PER_CHAPTER * DAYS_PER_QUARTER;
+ const daysPerChapter = QUARTERS_PER_CHAPTER * DAYS_PER_QUARTER;
+
+ const season = Math.floor(totalDays / daysPerSeason) + 1;
+ const seasonDay = totalDays % daysPerSeason;
+
+ const chapter = Math.floor(seasonDay / daysPerChapter) + 1;
+ const chapterDay = seasonDay % daysPerChapter;
+
+ const quarter = Math.floor(chapterDay / DAYS_PER_QUARTER) + 1;
+ const day = (chapterDay % DAYS_PER_QUARTER) + 1;
+
+ return {season, chapter, quarter, day, totalDays, daysPerChapter, daysPerSeason};
+}
+
+function renderCalendar(){
+
+ const pos = calculateCurrentPosition();
+
+ // apply offset to view past/future chapters
+ let viewChapter = pos.chapter + chapterOffset;
+ let viewSeason = pos.season;
+
+ while(viewChapter < 1){
+  viewSeason--;
+  viewChapter += CHAPTERS_PER_SEASON;
+ }
+
+ while(viewChapter > CHAPTERS_PER_SEASON){
+  viewSeason++;
+  viewChapter -= CHAPTERS_PER_SEASON;
+ }
+
+ // ALWAYS show real current date position (not affected by sliding)
+ document.getElementById("statusLine").innerText =
+ `${String(pos.day).padStart(2,'0')} Q${pos.quarter} Chap${pos.chapter} S${String(pos.season).padStart(2,'0')}`;
+
+ // Show which chapter user is VIEWING
+ document.getElementById("viewTitle").innerText = `Chapter ${viewChapter}`;
+
+ const cal = document.getElementById("calendar");
+ cal.innerHTML="";
+
+ for(let q=1;q<=4;q++){
+
+  const quarterBox=document.createElement("div");
+  quarterBox.className="quarter";
+
+  const header=document.createElement("div");
+  header.className="header";
+  header.innerText="Quarter "+toRoman(q);
+  quarterBox.appendChild(header);
+
+  const grid=document.createElement("div");
+  grid.className="grid";
+
+  for(let h=1;h<=8;h++){
+   const head=document.createElement("div");
+   head.className="day day-header";
+   head.innerText=toRoman(h);
+   grid.appendChild(head);
+  }
+
+  for(let d=1;d<=32;d++){
+
+   const cell=document.createElement("div");
+   cell.className="day";
+
+   // show TODAY only if viewing real chapter
+   if(chapterOffset===0 && q===pos.quarter && d===pos.day){
+    cell.classList.add("today");
+   }
+
+   if(d===16 || d===32){
+    cell.innerText=d===16?"R1":"R2";
+    cell.classList.add("review");
+   }
+   else{
+    cell.innerText=d;
+   }
+
+   grid.appendChild(cell);
+  }
+
+  quarterBox.appendChild(grid);
+  cal.appendChild(quarterBox);
+ }
+}
+
+function animateSlide(direction){
+ if(direction === "next"){
+  wrapper.classList.add("chapter-exit-left");
+  setTimeout(()=>{
+   chapterOffset++;
+   renderCalendar();
+   wrapper.classList.remove("chapter-exit-left");
+   wrapper.classList.add("chapter-enter-right");
+   setTimeout(()=>wrapper.classList.remove("chapter-enter-right"),20);
+  },300);
+ }
+ else{
+  wrapper.classList.add("chapter-exit-right");
+  setTimeout(()=>{
+   chapterOffset--;
+   renderCalendar();
+   wrapper.classList.remove("chapter-exit-right");
+   wrapper.classList.add("chapter-enter-left");
+   setTimeout(()=>wrapper.classList.remove("chapter-enter-left"),20);
+  },300);
+ }
+}
+
+function nextChapter(){ animateSlide("next"); }
+function prevChapter(){ animateSlide("prev"); }
+
+renderCalendar();
+wrapper.classList.add("chapter-active");
+
+// Auto refresh every minute
+setInterval(()=>{
+ if(chapterOffset === 0){
+  renderCalendar();
+ }
+},60000);
+
+</script>
 </body>
 
 </html>
